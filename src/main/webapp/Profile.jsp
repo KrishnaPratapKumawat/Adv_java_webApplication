@@ -17,48 +17,12 @@
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Profile</title>
+                <link rel="stylesheet" href="profile.css">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
                   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
                   crossorigin="anonymous">
                    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
-                <style>
-                  body {
-                    background: url('./images/background.png');
-                    opacity: 0.89;
-                    z-index: 2;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-
-                  }
-
-                  .btn {
-                    color: yellow;
-                    border: 2px solid whitesmoke;
-
-                  }
-
-                  .btn:hover {
-                    color: whitesmoke;
-                  }
-
-
-                  .fs-4:hover {
-                    border: 2.5px solid black;
-                    background-color: whitesmoke;
-                    cursor: pointer;
-                    border-radius: 8px;
-                  }
-
-                  #chng {
-                    background-color: whitesmoke;
-                    opacity: 0.69;
-                    color: black;
-                    margin: -120px 0px 0px 9px;
-                  }
-                </style>
               </head>
 
               <body>
@@ -66,10 +30,12 @@
                 <nav class="navbar navbar-dark bg-dark">
                   <div class="container">
                     <span class="navbar-brand mb-0 h1">Profile Page </span>
-                    <a href="#" class="btn " role="button" onclick="show_alert();">Search</a>
-
-                    <a href="logout" type="submit" class="btn " method="POST" role="button">Logout</a>
-
+                    <div>
+                      <a href="search.jsp" class="button">Search</a>
+                  </div>
+                      <div>
+                      <a href="logout" class="button">Log-Out</a>
+                  </div>
                   </div>
                 </nav>
 
@@ -120,7 +86,7 @@
                                   </div>
                                   <div class="col-1">
 
-                                    <button type="button" class="btn btn-warning btn-sm" id="chng"
+                                    <button type="button" class="btn btn-warning btn-sm" id="button"
                                       data-bs-toggle="modal" data-bs-target="#editModal"
                                       data-bs-whatever="@getbootstrap">Edit</button>
                                     <div class="modal fade" id="editModal" tabindex="-1"
@@ -193,8 +159,8 @@
                                   <div class="col-2">
                                     <!-- Delete Button modal -->
                                     <form action="/delete" method="post">
-                                      <button type="button" class="btn btn-danger btn-sm" id="chng"
-                                        onclick =() data-bs-toggle="modal"  data-bs-target="#deleteModal">
+                                      <button type="button" class="btn btn-danger btn-sm" id="button"
+                                      data-bs-toggle="modal"  data-bs-target="#deleteModal">
                                         Delete
                                       </button>
                                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
