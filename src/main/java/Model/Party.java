@@ -1,9 +1,10 @@
 package Model;
 
 public class Party {
+
     private  int    partyId;
     private String firstName;
-    private String  lastname;
+    private String  lastName;
     private String  address;
     private String  city;
     private  String zip;
@@ -12,6 +13,8 @@ public class Party {
     private  String phone;
     private  String password;
     private  String userName;
+    private  String otp;
+
 
 
     public int getPartyId() {
@@ -31,11 +34,11 @@ public class Party {
     }
 
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastname(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -75,7 +78,7 @@ public class Party {
         this.phone = phone;
     }
 
-    public String getUserName() {
+    public  String getUserName() {
         return userName;
     }
 
@@ -88,5 +91,13 @@ public class Party {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
     }
 }

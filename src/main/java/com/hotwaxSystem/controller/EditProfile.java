@@ -1,4 +1,4 @@
-package controller;
+package com.hotwaxSystem.controller;
 
 import util.DBConnection;
 

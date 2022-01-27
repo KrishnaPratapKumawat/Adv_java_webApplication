@@ -1,4 +1,4 @@
-package controller;
+package com.hotwaxSystem.controller;
 
 import Dao.UserLoginDao;
 import Model.Party;
@@ -36,18 +36,16 @@ public class UserLoginServlet  extends HttpServlet {
             e.printStackTrace();
         }
         
-
+        HttpSession httpSession = req.getSession(true);
        
         if (Success){
-            HttpSession httpSession = req.getSession(true);
+            
 
             httpSession.setAttribute("username",userlogin.getUserName());
             httpSession.setAttribute("password",userlogin.getPassword());
 
 
             RequestDispatcher rd = req.getRequestDispatcher("Profile.jsp");
-
-
             rd.forward(req,resp);
         }else {
             RequestDispatcher rd = req.getRequestDispatcher("error.jsp");

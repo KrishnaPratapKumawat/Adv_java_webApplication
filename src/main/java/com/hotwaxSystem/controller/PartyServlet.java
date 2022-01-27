@@ -1,14 +1,16 @@
-package controller;
+package com.hotwaxSystem.controller;
 
 import Dao.PartyUserDao;
 import Model.Party;
-
+import util.EmailVerify;
+import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Register")
@@ -18,7 +20,7 @@ public class PartyServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, NumberFormatException {
-
+try{
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
         String address = req.getParameter("address");
@@ -41,24 +43,28 @@ public class PartyServlet extends HttpServlet {
         party.setUserName(username);
         party.setPassword(password);
 
-
-        try {
-            Boolean pud = PartyUserDao.ValidateUser(party);
-
-            RequestDispatcher rd;
-            if (pud) {
-                rd = req.getRequestDispatcher("Sucess.jsp");
-
-            } else {
-                rd = req.getRequestDispatcher("registration.jsp");
+        HttpSession httpSession= req.getSession();
+              EmailVerify email = new EmailVerify();
+              party.setOtp(email.SendOtp());
+            boolean result = email.sendEmail(party);
 
 
+            System.out.println("otp : "+party.getOtp());
+
+
+
+            if (result){
+                httpSession.setAttribute("party",party);
+                RequestDispatcher rd = req.getRequestDispatcher("otpform.html");
+                rd.forward(req,resp);
             }
-            rd.forward(req, resp);
-        } catch (ClassNotFoundException e) {
+            else {
+                RequestDispatcher rd = req.getRequestDispatcher("registration.jsp");
+                rd.forward(req,resp);
+            }
+        } catch (MessagingException e) {
             e.printStackTrace();
         }
-
     }
 }
 

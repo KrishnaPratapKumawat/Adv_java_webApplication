@@ -1,4 +1,4 @@
-package controller;
+package com.hotwaxSystem.controller;
 
 import util.DBConnection;
 
@@ -18,23 +18,38 @@ import java.sql.Statement;
         @Override
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             HttpSession session = req.getSession();
+
             int partyId = (int) session.getAttribute("partyId");
-            System.out.println(partyId);
+
+            
+
             if (session.getAttribute("username")!=null){
+
                 partyId = (int) session.getAttribute("partyId");
+                System.out.println(partyId);
+               
                 try{
+
                     Connection conn = DBConnection.createConnection();
+
                     String deleteQuery = "delete ul,pu from userlogin ul inner join partyuser pu  where ul.partyid = pu.partyid and pu.partyid = "+partyId;
+                  
                     try (Statement stmt = conn.createStatement()) {
+
                         stmt.executeUpdate(deleteQuery);
+
                     }catch (Exception e){
+
                         e.printStackTrace();
                     }
+
                     session.invalidate();
 
-                   RequestDispatcher rd = req.getRequestDispatcher("delete.html");
-                   rd.include(req,resp);
+                   RequestDispatcher reqDispatcher = req.getRequestDispatcher("delete.html");
+                   
+                    reqDispatcher.include(req,resp);
                 }catch (Exception e){
+
                     e.printStackTrace();
                 }
             }
